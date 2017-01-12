@@ -19,7 +19,7 @@ class APIServer(object):
             def do_POST(self):
                 path, _, query = self.path.partition('?')
                 if path.strip('/') == 'api/notify':
-                    body = self.rfile.read().strip()
+                    body = self.rfile.read(int(self.headers['content-length'])).strip()
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
                     self.end_headers()
