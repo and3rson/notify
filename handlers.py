@@ -16,7 +16,7 @@ class MailPoller(object):
 class APIServer(object):
     def make_request_handler(self, ref):
         class APIRequestHandler(BaseHTTPRequestHandler):
-            def do_GET(self):
+            def do_POST(self):
                 path, _, query = self.path.partition('?')
                 if path.strip('/') == 'api/notify':
                     body = self.rfile.read().strip()
