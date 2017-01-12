@@ -19,11 +19,12 @@ class APIServer(object):
             def do_GET(self):
                 path, _, query = self.path.partition('?')
                 if path.strip('/') == 'api/notify':
+                    body = self.rfile.read().strip()
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
                     self.end_headers()
                     self.wfile.write('{"success": true}')
-                    ref.notifier.privmsg(settings.CHAN, '{}: {}'.format(settings.MENTION, query))
+                    ref.notifier.privmsg(settings.CHAN, '{}: {}'.format(settings.MENTION, body))
                 else:
                     self.send_response(404)
                     self.send_header('Content-type', 'application/json')
