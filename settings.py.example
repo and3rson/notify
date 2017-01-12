@@ -1,0 +1,6 @@
+HOST = 'irc.example.org'
+PORT = 6667
+USER = 'notifier'
+PASS = 'password'
+CHAN = 'general'
+MENTION = 'admin'
